@@ -1,23 +1,21 @@
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import ItemDetail from "./components/itemDetail/ItemDetail";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <div>
+                    <Navbar/>
+                </div>
+                <Routes>
+                    <Route path={"/item/:id"} element={<ItemDetail/>}/>
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
