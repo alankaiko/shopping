@@ -1,0 +1,62 @@
+import React, {createContext, useReducer} from "react";
+import AppReducer from "./AppReducer";
+
+const initialState = {
+    cart: [],
+    orders: []
+}
+
+export const GlobalContext = createContext(initialState);
+
+export const GlobalProvider = ({children}) => {
+    const [state, dispatch] = useReducer(AppReducer, initialState);
+
+    const addItemToCartList = (item) => {
+        dispatch({
+            type: "ADD_ITEM_IN_CART",
+            payload: item
+        })
+    }
+
+    const removeItemToCartList = (item) => {
+        dispatch({
+            type: "REMOVE_ITEM_IN_CART",
+            payload: item
+        })
+    }
+
+    const clearCart = () => {
+        dispatch({
+            type: "CLEAR_CART"
+        })
+    }
+
+    const addItemToOrderList = (item) => {
+        dispatch({
+            type: "ADD_ITEM_IN_ORDER",
+            payload: item
+        })
+    }
+
+    const removeItemToOrderList = (item) => {
+        dispatch({
+            type: "REMOVE_ITEM_IN_ORDER",
+            payload: item
+        })
+    }
+
+    return (
+        <GlobalProvider.Provider
+            value{{
+            cart: state.cart,
+            order: state.orders,
+            addItemToCartList,
+            removeItemToCartList,
+            clearCart,
+            addItemToOrderList,
+            removeItemToOrderList
+        }}>
+            {children}
+        </GlobalProvider.Provider>
+    )
+}
