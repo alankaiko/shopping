@@ -46,10 +46,9 @@ export const GlobalProvider = ({children}) => {
     }
 
     return (
-        <GlobalProvider.Provider
-            value{{
+        <GlobalContext.Provider value={{
             cart: state.cart,
-            order: state.orders,
+            orders: state.orders,
             addItemToCartList,
             removeItemToCartList,
             clearCart,
@@ -57,6 +56,6 @@ export const GlobalProvider = ({children}) => {
             removeItemToOrderList
         }}>
             {children}
-        </GlobalProvider.Provider>
+        </GlobalContext.Provider>
     )
 }
